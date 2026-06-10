@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evercrest Work Order Bot</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="Evercrest work order bot header">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M8 21.5 24 8l16 13.5V40a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V21.5Z" />
+              <path d="M17 42V27h14v15" />
+            </svg>
+          </div>
+          <div>
+            <h1>Evercrest Work Order Assistant</h1>
+            <p>Tenant troubleshooting intake with staff-ready work order handoff</p>
+          </div>
+        </div>
+        <div class="status-strip">
+          <span id="stageBadge" class="stage-badge">Intake</span>
+          <span id="riskBadge" class="risk-badge neutral">Normal</span>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <section class="chat-panel" aria-label="Tenant chatbot">
+          <div class="chat-header">
+            <div>
+              <h2>Tenant Chat</h2>
+              <p>Guided maintenance intake for AC and general work orders</p>
+            </div>
+            <button id="resetBtn" class="icon-button" type="button" title="Start over" aria-label="Start over">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 12a9 9 0 1 0 3-6.7" />
+                <path d="M3 4v6h6" />
+              </svg>
+            </button>
+          </div>
+
+          <div id="messages" class="messages" aria-live="polite"></div>
+
+          <div id="quickReplies" class="quick-replies" aria-label="Quick replies"></div>
+
+          <form id="chatForm" class="composer" autocomplete="off">
+            <input id="chatInput" name="message" type="text" placeholder="Type tenant response..." />
+            <button type="submit">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22 2 11 13" />
+                <path d="m22 2-7 20-4-9-9-4 20-7Z" />
+              </svg>
+              Send
+            </button>
+          </form>
+        </section>
+
+        <aside class="staff-panel" aria-label="Staff work order draft">
+          <div class="panel-heading">
+            <div>
+              <h2>Staff Work Order Draft</h2>
+              <p>Live summary generated from the tenant conversation</p>
+            </div>
+            <div id="completionMeter" class="meter" aria-label="Completion meter">
+              <span></span>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span>Tenant</span>
+              <strong id="summaryTenant">Not captured</strong>
+            </div>
+            <div class="summary-item">
+              <span>Property</span>
+              <strong id="summaryAddress">Not captured</strong>
+            </div>
+            <div class="summary-item">
+              <span>Category</span>
+              <strong id="summaryCategory">Not selected</strong>
+            </div>
+            <div class="summary-item">
+              <span>Vendor Type</span>
+              <strong id="summaryVendor">Pending</strong>
+            </div>
+          </div>
+
+          <section class="draft-section">
+            <h3>Appfolio Job Description</h3>
+            <textarea id="appfolioDraft" readonly></textarea>
+          </section>
+
+          <section class="draft-section">
+            <h3>Maintenance Team Message</h3>
+            <textarea id="teamDraft" readonly></textarea>
+          </section>
+
+          <section class="decision-panel">
+            <h3>Bot Recommendation</h3>
+            <div id="recommendation" class="recommendation">
+              Continue intake before creating a work order.
+            </div>
+          </section>
+
+          <section class="action-row">
+            <button id="copySummaryBtn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <rect x="2" y="2" width="13" height="13" rx="2" />
+              </svg>
+              Copy Summary
+            </button>
+            <button id="downloadJsonBtn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v12" />
+                <path d="m7 10 5 5 5-5" />
+                <path d="M5 21h14" />
+              </svg>
+              Export JSON
+            </button>
+          </section>
+
+          <div class="handoff-checklist">
+            <h3>Ready Checklist</h3>
+            <ul id="checklist"></ul>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
