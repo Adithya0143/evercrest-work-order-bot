@@ -22,6 +22,7 @@
           </div>
         </div>
         <div class="status-strip">
+          <span class="version-badge">v1.0 media send</span>
           <span id="stageBadge" class="stage-badge">Intake</span>
           <span id="riskBadge" class="risk-badge neutral">Normal</span>
         </div>
@@ -45,6 +46,12 @@
           <div id="messages" class="messages" aria-live="polite"></div>
 
           <div id="quickReplies" class="quick-replies" aria-label="Quick replies"></div>
+
+          <div id="mediaUploadBox" class="media-upload" hidden>
+            <label for="mediaUpload">Attach one photo or video</label>
+            <input id="mediaUpload" name="attachment" type="file" accept="image/*,video/*" form="adminEmailForm" />
+            <p id="mediaFileList">No files attached yet.</p>
+          </div>
 
           <form id="chatForm" class="composer" autocomplete="off">
             <input id="chatInput" name="message" type="text" placeholder="Type tenant response..." />
@@ -86,6 +93,14 @@
               <span>Vendor Type</span>
               <strong id="summaryVendor">Pending</strong>
             </div>
+            <div class="summary-item">
+              <span>Priority Flag</span>
+              <strong id="summaryPriority">Routine</strong>
+            </div>
+            <div class="summary-item wide">
+              <span>Admin Email</span>
+              <strong id="summaryAdminEmail">info@evercresthomes.com</strong>
+            </div>
           </div>
 
           <section class="draft-section">
@@ -106,6 +121,13 @@
           </section>
 
           <section class="action-row">
+            <button id="emailAdminBtn" type="submit" form="adminEmailForm">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h16v16H4z" />
+                <path d="m4 7 8 6 8-6" />
+              </svg>
+              Send to Admin
+            </button>
             <button id="copySummaryBtn" type="button">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="9" y="9" width="13" height="13" rx="2" />
@@ -129,8 +151,25 @@
           </div>
         </aside>
       </section>
+
+      <form id="adminEmailForm" class="hidden-form" action="https://formsubmit.co/info@evercresthomes.com" method="POST" enctype="multipart/form-data" target="_blank">
+        <input type="hidden" name="_subject" value="Evercrest Work Order Request" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="tenant_name" />
+        <input type="hidden" name="tenant_phone" />
+        <input type="hidden" name="tenant_email" />
+        <input type="hidden" name="property_address" />
+        <input type="hidden" name="category" />
+        <input type="hidden" name="vendor_type" />
+        <input type="hidden" name="priority" />
+        <input type="hidden" name="issue_description" />
+        <input type="hidden" name="appfolio_draft" />
+        <input type="hidden" name="maintenance_message" />
+        <input type="hidden" name="bot_recommendation" />
+      </form>
     </main>
 
-    <script src="./app.js"></script>
+    <script src="./app.js?v=1.0-native-media-submit"></script>
   </body>
 </html>

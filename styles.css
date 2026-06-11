@@ -117,7 +117,8 @@ button svg {
 }
 
 .stage-badge,
-.risk-badge {
+.risk-badge,
+.version-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -126,6 +127,13 @@ button svg {
   border-radius: 999px;
   font-weight: 700;
   font-size: 14px;
+}
+
+.version-badge {
+  min-width: auto;
+  color: var(--teal);
+  border: 1px solid rgba(0, 135, 138, 0.28);
+  background: var(--soft-teal);
 }
 
 .stage-badge {
@@ -271,6 +279,38 @@ button svg {
   display: none;
 }
 
+.media-upload {
+  margin: 10px 18px 0;
+  padding: 14px;
+  border: 1px dashed #9cc9d0;
+  border-radius: 12px;
+  background: #f5fbfb;
+}
+
+.media-upload label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.media-upload input {
+  display: block;
+  width: 100%;
+  color: var(--ink);
+}
+
+.media-upload p {
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.hidden-form {
+  display: none;
+}
+
 .chip {
   min-height: 36px;
   padding: 8px 12px;
@@ -384,6 +424,10 @@ button svg {
   line-height: 1.25;
 }
 
+.summary-item.wide {
+  grid-column: 1 / -1;
+}
+
 .draft-section {
   padding: 10px 20px 0;
 }
@@ -431,13 +475,17 @@ button svg {
 
 .action-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   padding: 14px 20px 0;
 }
 
 .action-row button:nth-child(2) {
   background: var(--teal);
+}
+
+.action-row button:nth-child(3) {
+  background: var(--green);
 }
 
 .handoff-checklist ul {
